@@ -1,7 +1,6 @@
 import QtQuick 1.1
 
 Rectangle {
-    id: menu_bar_
     anchors.top: parent.top
     width: parent.width; height: 100; color: "darkBlue"
     Rectangle {

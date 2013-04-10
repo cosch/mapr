@@ -16,13 +16,8 @@ Rectangle {
     }
 
     /* this rectangle contains the "normal" view in your app */
-    Buddies {
+    ViewBuddies {
         id: buddies_view
-
-        /* quick and dirty menu "button" for this demo (TODO: replace with your own) */
-        NaviBar {
-            id: navi_bar
-        }
     }
 
     Component.onCompleted: toggleMenu()

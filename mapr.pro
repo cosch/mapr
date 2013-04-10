@@ -22,4 +22,5 @@ include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 
 OTHER_FILES += \
-    qml/mapr/Menu.qml
+    qml/mapr/Menu.qml \
+    qml/mapr/ViewBuddies.qml
