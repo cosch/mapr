@@ -25,10 +25,22 @@ Rectangle {
         delegate: Rectangle { width: 80; height: 80; color: Qt.rgba( Math.random(), Math.random(), Math.random(), 1) }
     }
 
+    /* this is what moves the normal view aside */
+    transform: Translate {
+        id: menu_mover
+        x: 0
+        Behavior on x { NumberAnimation { duration: 400; easing.type: Easing.OutQuad } }
+    }
+
     /* put this last to "steal" touch on the normal window when menu is shown */
     MouseArea {
         anchors.fill: parent
         enabled: main.menu_shown
         onClicked: main.onMenu();
     }
+
+    function moveX(x) {
+        menu_mover.x = x
+    }
+
 }
