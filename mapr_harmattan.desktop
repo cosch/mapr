@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Name=mapr
+Exec=/usr/bin/single-instance /opt/mapr/bin/mapr
+Icon=/usr/share/icons/hicolor/80x80/apps/mapr80.png
+X-Window-Icon=
+X-HildonDesk-ShowInToolbar=true
+X-Osso-Type=application/x-executable
