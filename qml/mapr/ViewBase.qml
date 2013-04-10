@@ -3,6 +3,7 @@ import QtQuick 1.1
 Rectangle {
     anchors.fill: parent
     color: "white"
+    visible: false
 
     /* quick and dirty menu "button" for this demo (TODO: replace with your own) */
     NaviBar {

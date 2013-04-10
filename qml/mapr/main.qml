@@ -8,23 +8,47 @@ Rectangle {
     color: "black"
 
     property bool menu_shown: false
-    property string view: "buddies_view"
+    property ViewBase current_view : map_view
 
-    /* this rectangle contains the "menu" */
     Menu {
         id: menu_view
     }
 
-    /* this rectangle contains the "normal" view in your app */
+
     ViewBuddies {
         id: buddies_view
     }
 
-    Component.onCompleted: toggleMenu()
+    ViewMap {
+        id: map_view
+    }
+
+
+    Component.onCompleted: {
+        current_view.visible = true
+    }
+
     /* this functions toggles the menu and starts the animation */
-    function toggleMenu()
-    {
-        buddies_view.moveX( main.menu_shown ? 0 : main.width * 0.9 )
+    function toggleMenu() {
+        current_view.moveX( main.menu_shown ? 0 : main.width * 0.9 )
         main.menu_shown = !main.menu_shown;
+    }
+
+    function activateView(v) {
+        var view;
+
+        switch (v) {
+           case "buddies_view":
+                    view = buddies_view
+                          break;
+           case "map_view":
+                    view = map_view
+                          break;
+        }
+        current_view.visible=false
+        current_view = view
+        current_view.visible=true
+
+        toggleMenu()
     }
 }

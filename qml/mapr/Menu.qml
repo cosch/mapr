@@ -31,6 +31,11 @@ Rectangle {
                     bottom: parent.bottom
                 }
             }
+            MouseArea {
+                id: ma_;
+                anchors.fill: parent;
+                onClicked: main.activateView(view);
+            }
         }
     }
 
