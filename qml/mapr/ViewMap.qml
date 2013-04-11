@@ -14,6 +14,9 @@ ViewBase {
 //            }
 //        }
 
+        Component.onCompleted: {
+            //map.updateFromModel(mapModel)
+        }
 
         PinchArea {
             id: pinch
@@ -39,38 +42,38 @@ ViewBase {
         }
 
         MouseArea {
-              id: mousearea
+          id: mousearea
 
-              property bool __isPanning: false
-              property int __lastX: -1
-              property int __lastY: -1
+          property bool __isPanning: false
+          property int __lastX: -1
+          property int __lastY: -1
 
-              anchors.fill : map
+          anchors.fill : map
 
-              onPressed: {
-                 __isPanning = true
-                 __lastX = mouse.x
-                 __lastY = mouse.y
-              }
+          onPressed: {
+             __isPanning = true
+             __lastX = mouse.x
+             __lastY = mouse.y
+          }
 
-              onReleased: {
-                 __isPanning = false
-              }
+          onReleased: {
+             __isPanning = false
+          }
 
-              onPositionChanged: {
-                 if (__isPanning) {
-                    var dx = mouse.x - __lastX
-                    var dy = mouse.y - __lastY
-                    map.pan(-dx, -dy)
-                    __lastX = mouse.x
-                    __lastY = mouse.y
-                 }
-              }
+          onPositionChanged: {
+             if (__isPanning) {
+                var dx = mouse.x - __lastX
+                var dy = mouse.y - __lastY
+                map.pan(-dx, -dy)
+                __lastX = mouse.x
+                __lastY = mouse.y
+             }
+          }
 
-              onCanceled: {
-                 __isPanning = false;
-              }
-           }
+          onCanceled: {
+             __isPanning = false;
+          }
+       }
 
     }
 }

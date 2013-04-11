@@ -16,7 +16,9 @@ MOBILITY += location
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    native/mapwidget.cpp
+    native/mapwidget.cpp \
+    native/listmodel.cpp \
+    native/mapitem.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -27,4 +29,6 @@ OTHER_FILES += \
     qml/mapr/ViewBuddies.qml
 
 HEADERS += \
-    native/mapwidget.h
+    native/mapwidget.h \
+    native/listmodel.h \
+    native/mapitem.h

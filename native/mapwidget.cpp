@@ -11,13 +11,15 @@
 #include <QtCore>
 
 #include "mapwidget.h"
+#include "mapitem.h"
 
 // A widget for QML, therefore we need the parameter-less constructor.
 MapWidget::MapWidget() :
     QGraphicsGeoMap(createManager())
 {
-    setCenter(QGeoCoordinate(51.05, 13.73));
+    setCenter(QGeoCoordinate(53.12,13.52));
     setZoomLevel(17);
+    addMapItem(new MapItem("txtr", 53.12,13.52));
 }
 
 MapWidget::~MapWidget()
@@ -45,35 +47,31 @@ QGeoMappingManager* MapWidget::createManager()
     return mappingManager;
 }
 
-//void MapWidget::addPoi(PoiData *poi, bool active)
-//{
-//    QGeoCoordinate coord(poi->getLat(), poi->getLon());
+void MapWidget::addMapItem(MapItem *item)
+{
+    QGeoCoordinate coord(item->geoX(), item->geoY());
 
-//    QPixmap pixmap;
-//    if (active) {
-//        pixmap = QPixmap(":qml/Common/img/poi_active.png");
-//    } else {
-//        pixmap = QPixmap(":qml/Common/img/poi_inactive.png");
-//    }
+    QPixmap pixmap;
+    pixmap = QPixmap(":qml/Common/img/poi_active.png");
 
-//    QGeoMapPixmapObject *pixMapObject = new QGeoMapPixmapObject(coord, QPoint(-26,-65), pixmap);
-//    pixMapObject->setProperty("uuid", poi->getUuid());
-//    pixMapObject->setObjectName("poiMarker");
 
-//    QGeoMapGroupObject *poiMarker = new QGeoMapGroupObject();
-//    poiMarker->setProperty("uuid", poi->getUuid());
-//    poiMarker->addChildObject(pixMapObject);
+    QGeoMapPixmapObject *pixMapObject = new QGeoMapPixmapObject(coord, QPoint(-26,-65), pixmap);
+    pixMapObject->setProperty("uuid", item->name());
+    pixMapObject->setObjectName("poiMarker");
 
-//    if (active) {
-//        QGeoMapCircleObject *circle = new QGeoMapCircleObject(coord, poi->getRadius());
-//        circle->setPen(QPen((poiColor)));
-//        circle->setBrush(QBrush(poiColor));
-//        circle->setZValue(-1);
-//        poiMarker->addChildObject(circle);
-//    }
+    QGeoMapGroupObject *poiMarker = new QGeoMapGroupObject();
+    poiMarker->setProperty("uuid", item->name());
+    poiMarker->addChildObject(pixMapObject);
 
-//    addMapObject(poiMarker);
-//}
+    QGeoMapCircleObject *circle = new QGeoMapCircleObject(coord, 10);
+    circle->setPen(QPen(("lightgrey")));
+    circle->setBrush(QBrush("lightgrey"));
+    circle->setZValue(-1);
+    poiMarker->addChildObject(circle);
+
+
+    addMapObject(poiMarker);
+}
 
 //void MapWidget::removePoi(PoiData *poi)
 //{
@@ -139,4 +137,12 @@ void MapWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 
     pan(dx, dy);
     //setFollowPosition(false);
+}
+
+void MapWidget::updateFromModel(ListModel* model)
+{
+    for(int i=0;i<model->rowCount();i++)
+    {
+        addMapItem((MapItem*)model->itemAt(i));
+    }
 }

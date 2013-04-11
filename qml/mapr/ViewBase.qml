@@ -37,6 +37,33 @@ Rectangle {
         onClicked: main.toggleMenu();
     }
 
+    MouseArea {
+      id: mousearea
+      enabled: !main.menu_shown
+
+      property bool __isFromLeft: false
+
+      anchors.fill : parent
+
+      onPressed: {
+         __isFromLeft = true
+      }
+
+      onReleased: {
+          if( __isFromLeft )
+              main.toggleMenu();
+         __isFromLeft = false
+      }
+
+      onPositionChanged: {
+
+      }
+
+      onCanceled: {
+         __isFromLeft = false;
+      }
+   }
+
     function moveX(x) {
         menu_mover.x = x
     }

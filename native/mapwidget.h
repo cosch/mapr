@@ -12,6 +12,9 @@
 
 QTM_USE_NAMESPACE
 
+class MapItem;
+class ListModel;
+
 class MapWidget : public QGraphicsGeoMap
 {
     Q_OBJECT
@@ -20,7 +23,9 @@ public:
     MapWidget();
     ~MapWidget();
 
-    //void addPoi(PoiData *poi, bool active);
+    Q_INVOKABLE void updateFromModel(ListModel* model);
+
+    void addMapItem(MapItem *item);
     //void removePoi(PoiData *poi);
     //void clearPois();
 
