@@ -38,7 +38,8 @@ Rectangle {
     }
 
     function toggleMenu() {
-        current_view.moveX( main.menu_shown ? 0 : main.width * 0.9 )
+        var w = Math.max(main.width * 0.4,300)
+        current_view.moveX( main.menu_shown ? 0 : w)
         main.menu_shown = !main.menu_shown;
     }
 

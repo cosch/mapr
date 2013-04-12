@@ -15,7 +15,8 @@ Rectangle {
             Text {
                 anchors {
                     left: parent.left;
-                    leftMargin: 12;
+                    //leftMargin: 12;
+                    horizontalCenter: parent.horizontalCenter;
                     verticalCenter: parent.verticalCenter
                 }
                 color: "white";
@@ -27,6 +28,7 @@ Rectangle {
                 width: parent.width * 0.7;
                 color: "gray";
                 anchors {
+                    left: parent.left;
                     horizontalCenter: parent.horizontalCenter;
                     bottom: parent.bottom
                 }
