@@ -1,6 +1,6 @@
 import QtQuick 1.1
 
-ViewBase {
+ViewLeft {
 
     /* this is my sample "normal" contant (TODO: replace with your own)  */
     GridView {

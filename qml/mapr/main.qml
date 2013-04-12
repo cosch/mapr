@@ -14,6 +14,9 @@ Rectangle {
         id: menu_view
     }
 
+    ViewList {
+        id: list_view
+    }
 
     ViewBuddies {
         id: buddies_view
@@ -21,6 +24,11 @@ Rectangle {
 
     ViewMap {
         id: map_view
+        right_view: list_view
+
+        Component.onCompleted: {
+            right_view.left_view= map_view
+        }
     }
 
 

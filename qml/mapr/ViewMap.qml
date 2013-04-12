@@ -1,7 +1,7 @@
 import QtQuick 1.1
 import maprwidgets 1.0
 
-ViewBase {
+ViewLeft {
 
     MyMap {
         id: map

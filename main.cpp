@@ -15,6 +15,7 @@ ListModel* getModel() {
     qDebug() << "INFO: getModel - g_model was null";
     g_model= new ListModel(new MapItem, qApp);
     g_model->appendRow(new MapItem("txtr", 53.12,13.52, g_model));
+    qDebug() << "INFO: getModel" << g_model;
   }
   return g_model;
 }
