@@ -15,11 +15,12 @@
 
 // A widget for QML, therefore we need the parameter-less constructor.
 MapWidget::MapWidget() :
-    QGraphicsGeoMap(createManager())
+    QGraphicsGeoMap(createManager()),
+    m_datamodel(NULL)
 {
     setCenter(QGeoCoordinate(53.12,13.52));
     setZoomLevel(17);
-    addMapItem(new MapItem("txtr", 53.12,13.52));
+    //addMapItem(new MapItem("txtr", 53.12,13.52));
 }
 
 MapWidget::~MapWidget()
@@ -139,10 +140,21 @@ void MapWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
     //setFollowPosition(false);
 }
 
-void MapWidget::updateFromModel(ListModel* model)
+void MapWidget::setDatamodel(QObject* m)
 {
-    for(int i=0;i<model->rowCount();i++)
+    qDebug() << "INFO: setDatamodel" << m;
+
+    m_datamodel=dynamic_cast<ListModel*>(m);
+
+    for(int i=0;m_datamodel && i<m_datamodel->rowCount();i++)
     {
-        addMapItem((MapItem*)model->itemAt(i));
+        addMapItem((MapItem*)m_datamodel->itemAt(i));
     }
+
+    datamodelChanged(m_datamodel);
+}
+
+QObject* MapWidget::datamodel()
+{
+    return m_datamodel;
 }

@@ -6,6 +6,7 @@ ViewBase {
     MyMap {
         id: map
         anchors { top: naviBar().bottom; bottom: parent.bottom; left: parent.left; right: parent.right; margins: 30 }
+        datamodel: mapModel
 
 //        MouseArea {
 //            anchors.fill: parent
@@ -15,7 +16,7 @@ ViewBase {
 //        }
 
         Component.onCompleted: {
-            //map.updateFromModel(mapModel)
+            datamodel=mapModel
         }
 
         PinchArea {

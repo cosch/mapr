@@ -25,6 +25,7 @@ Rectangle {
 
 
     Component.onCompleted: {
+        current_view.moveX(0)
         current_view.visible = true
     }
 

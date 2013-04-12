@@ -19,11 +19,14 @@ class MapWidget : public QGraphicsGeoMap
 {
     Q_OBJECT
 
+    Q_PROPERTY(QObject* datamodel READ datamodel WRITE setDatamodel NOTIFY datamodelChanged)
+
 public:
     MapWidget();
     ~MapWidget();
 
-    Q_INVOKABLE void updateFromModel(ListModel* model);
+    void setDatamodel(QObject *model);
+    QObject* datamodel();
 
     void addMapItem(MapItem *item);
     //void removePoi(PoiData *poi);
@@ -31,6 +34,7 @@ public:
 
 signals:
     void poiClicked(QString uuid);
+    void datamodelChanged(QObject* m);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
@@ -42,6 +46,7 @@ private:
 
 private:
     QPointF mLastPos;
+    ListModel* m_datamodel;
 };
 
 #endif // MAP_WIDGET_H

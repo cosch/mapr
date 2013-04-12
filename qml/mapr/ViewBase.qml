@@ -26,7 +26,7 @@ Rectangle {
     /* this is what moves the normal view aside */
     transform: Translate {
         id: menu_mover
-        x: 0
+        x: main.width * 0.9
         Behavior on x { NumberAnimation { duration: 400; easing.type: Easing.OutQuad } }
     }
 
