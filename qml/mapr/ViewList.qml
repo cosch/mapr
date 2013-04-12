@@ -1,7 +1,12 @@
 import QtQuick 1.1
 
 ViewRight {
-        color: "LightGrey"
+    color: "LightGrey"
+
+    Component.onCompleted: {
+        naviBar().setViewButtonLeft("M")
+        naviBar().setViewButtonRight("L")
+    }
 
     ListView {
         anchors { top: naviBar().bottom; bottom: parent.bottom; left: parent.left; right: parent.right; margins: 30 }

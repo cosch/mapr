@@ -4,6 +4,10 @@ ViewBase {
     property ViewRight right_view: undefined
     z: 0
 
+    Component.onCompleted: {
+        naviBar().isLeftView()
+    }
+
     /* this is what moves the normal view aside */
     transform: Translate {
         id: menu_mover
@@ -17,6 +21,7 @@ ViewBase {
     }
 
     function onMoveFromRight() {
+        console.log("ViewLeft onMoveFromRight")
         right_view.moveX(0)
     }
 }

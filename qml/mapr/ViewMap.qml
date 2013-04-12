@@ -3,6 +3,11 @@ import maprwidgets 1.0
 
 ViewLeft {
 
+    Component.onCompleted: {
+        naviBar().setViewButtonLeft("M")
+        naviBar().setViewButtonRight("L")
+    }
+
     MyMap {
         id: map
         anchors { top: naviBar().bottom; bottom: parent.bottom; left: parent.left; right: parent.right; margins: 30 }

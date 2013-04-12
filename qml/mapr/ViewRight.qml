@@ -5,7 +5,7 @@ ViewBase {
     z: 0
 
     Component.onCompleted: {
-        naviBar().setViewButton("L")
+        naviBar().isRightView()
     }
 
     /* this is what moves the normal view aside */

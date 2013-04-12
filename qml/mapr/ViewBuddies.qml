@@ -2,6 +2,10 @@ import QtQuick 1.1
 
 ViewLeft {
 
+    Component.onCompleted: {
+        naviBar().setViewButtonLeft("B")
+        naviBar().view_button_right.visible=false
+    }
     /* this is my sample "normal" contant (TODO: replace with your own)  */
     GridView {
         anchors { top: naviBar().bottom; bottom: parent.bottom; left: parent.left; right: parent.right; margins: 30 }
