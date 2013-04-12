@@ -2,7 +2,11 @@ import QtQuick 1.1
 
 ViewBase {
     property ViewBase left_view: null
-    z: 1
+    z: 0
+
+    Component.onCompleted: {
+        naviBar().setViewButton("L")
+    }
 
     /* this is what moves the normal view aside */
     transform: Translate {
