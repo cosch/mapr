@@ -5,7 +5,6 @@ Rectangle {
     color: "white"
     visible: false
 
-    /* quick and dirty menu "button" for this demo (TODO: replace with your own) */
     NaviBar {
         id: navi_bar
     }
@@ -41,18 +40,31 @@ Rectangle {
       id: mousearea
       enabled: !main.menu_shown
 
-      property bool __isFromLeft: false
+      property bool isFromLeft: false
+      property bool isFromRight: false
 
-      anchors.fill : parent
+      anchors { top: naviBar().bottom; bottom: parent.bottom; left: parent.left; right: parent.right}
 
       onPressed: {
-         __isFromLeft = true
+          console.log("ViewBase mouse pressed:"+mouse.x)
+          if(mouse.x<=20)
+            isFromLeft = true
+          else
+          if(mouse.x>main.width-20)
+            isFromRight = true
       }
 
       onReleased: {
-          if( __isFromLeft )
-              main.toggleMenu();
-         __isFromLeft = false
+          if( isFromLeft ) {
+            console.log("ViewBase mouse from left")
+            main.showMenu();
+            isFromLeft = false
+          } else
+          if( isFromRight ) {
+            console.log("ViewBase mouse from right")
+            main.hideMenu()
+            isFromRight = false
+          }
       }
 
       onPositionChanged: {
@@ -60,7 +72,7 @@ Rectangle {
       }
 
       onCanceled: {
-         __isFromLeft = false;
+         isFromLeft = false;
       }
    }
 

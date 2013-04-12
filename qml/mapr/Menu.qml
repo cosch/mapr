@@ -34,7 +34,10 @@ Rectangle {
             MouseArea {
                 id: ma_;
                 anchors.fill: parent;
-                onClicked: main.activateView(view);
+                onClicked: {
+                    console.log("menu mouse clicked:"+mouse.x)
+                    main.activateView(view);
+                }
             }
         }
     }

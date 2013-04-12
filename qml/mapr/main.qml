@@ -29,10 +29,19 @@ Rectangle {
         current_view.visible = true
     }
 
-    /* this functions toggles the menu and starts the animation */
     function toggleMenu() {
         current_view.moveX( main.menu_shown ? 0 : main.width * 0.9 )
         main.menu_shown = !main.menu_shown;
+    }
+
+    function hideMenu() {
+        if( main.menu_shown )
+            toggleMenu()
+    }
+
+    function showMenu() {
+        if( !main.menu_shown )
+            toggleMenu()
     }
 
     function activateView(v) {
