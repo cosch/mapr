@@ -9,6 +9,7 @@
 #include "native/mynotifier.h"
 
 #include "QXmppClient.h"
+#include "QXmppMucManager.h"
 
 static ListModel* g_model = NULL;
 
@@ -32,9 +33,21 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QXmppClient xmppClient;
     xmppClient.configuration().setJid("footest@jabber.org");
-    xmppClient.configuration().setPassword("ohahhaa");
+    xmppClient.configuration().setPassword("footest23");
     QXmppLogger::getLogger()->setLoggingType(QXmppLogger::StdoutLogging);
     xmppClient.connectToServer(xmppClient.configuration());
+
+    QXmppMucManager* mucMan = xmppClient.findExtension<QXmppMucManager>();
+    if( !mucMan )
+    {
+        mucMan = new QXmppMucManager();
+        if( !xmppClient.addExtension(mucMan) )
+        {
+            delete mucMan;
+            mucMan=NULL;
+        }
+    }
+    qDebug() << " mucMan:" << mucMan;
 
     MyNotifier myNotifier;
     QObject::connect( &xmppClient, SIGNAL(stateChanged(QXmppClient::State)), &myNotifier, SLOT(notifyStateChange(QXmppClient::State)) );
@@ -42,6 +55,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     viewer.rootContext()->setContextProperty("mapModel",  getModel());
     viewer.rootContext()->setContextProperty("xmppClient",  &xmppClient);
     viewer.rootContext()->setContextProperty("notifier", &myNotifier);
+    viewer.rootContext()->setContextProperty("mucMan", mucMan);
 
     //qmlRegisterMetaType<QXmppClient::State>("xmppClient::State");
     qmlRegisterType<MapWidget>("maprwidgets", 1, 0, "MyMap");

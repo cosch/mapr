@@ -7,7 +7,13 @@ XMPP_BASE = $$PWD/native/xmpp/
 QXMPP_INCLUDEPATH = $$XMPP_BASE/qxmpp/src/base $$XMPP_BASE/qxmpp/src/client
 QXMPP_INCLUDEPATH +=$$XMPP_BASE/qxmpp/src/server
 
-LIBS += $$XMPP_BASE/libs/linux/release/libqxmpp.so.0
+CONFIG(debug) {
+    LIBS += $$XMPP_BASE/libs/linux/debug/libqxmpp_d.so.0.7.6
+}
+CONFIG(release) {
+    LIBS += $$XMPP_BASE/libs/linux/release/libqxmpp.so.0.7.6
+}
+
 INCLUDEPATH += $$QXMPP_INCLUDEPATH
 
 # Additional import path used to resolve QML modules in Creator's code model
@@ -36,7 +42,8 @@ qtcAddDeployment()
 
 OTHER_FILES += \
     qml/mapr/Menu.qml \
-    qml/mapr/ViewBuddies.qml
+    qml/mapr/ViewBuddies.qml \
+    room-log-pidgin.xml
 
 HEADERS += \
     native/mapwidget.h \

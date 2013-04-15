@@ -1,0 +1,179 @@
+<presence to='#mapr@conference.jabber.org/footest'>
+        <priority>1</priority>
+        <c xmlns='http://jabber.org/protocol/caps' node='http://pidgin.im/' hash='sha-1' ver='AcN1/PEN8nq7AHD+9jpxMV4U6YM=' ext='voice-v1 camera-v1 video-v1'/>
+        <x xmlns='http://jabber.org/protocol/muc'>
+                <password>footest</password>
+        </x>
+</presence>
+<presence from='#mapr@conference.jabber.org/footest' to='footest@jabber.org/5030d0f81b06b2d4'>
+        <priority>1</priority>
+        <c xmlns='http://jabber.org/protocol/caps' node='http://pidgin.im/' hash='sha-1' ver='AcN1/PEN8nq7AHD+9jpxMV4U6YM=' ext='voice-v1 camera-v1 video-v1'/>
+        <x xmlns='http://jabber.org/protocol/muc#user'>
+                <item affiliation='owner' role='moderator'/>
+                <status code='201'/>
+        </x>
+</presence>
+<iq type='get' id='purple132c33c' to='#mapr@conference.jabber.org'>
+        <query xmlns='http://jabber.org/protocol/disco#info' node='http://jabber.org/protocol/muc#traffic'/>
+</iq>
+<iq from='#mapr@conference.jabber.org' to='footest@jabber.org/5030d0f81b06b2d4' type='error' id='purple132c33c'>
+        <error code='503' type='cancel'>
+                <service-unavailable xmlns='urn:ietf:params:xml:ns:xmpp-stanzas'/>
+        </error>
+</iq>
+<iq type='get' id='purple132c33d' to='#mapr@conference.jabber.org'>
+        <query xmlns='http://jabber.org/protocol/muc#owner'/>
+</iq>
+<iq from='#mapr@conference.jabber.org' to='footest@jabber.org/5030d0f81b06b2d4' type='result' id='purple132c33d'>
+        <query xmlns='http://jabber.org/protocol/muc#owner'>
+                <x xmlns='jabber:x:data' type='form'>
+                        <title>Complete this form to configure the room.</title>
+                        <field var='FORM_TYPE' type='hidden'>
+                                <value>http://jabber.org/protocol/muc#roomconfig</value>
+                        </field>
+                        <field label='Room Title' var='muc#roomconfig_roomname' type='text-single'>
+                                <value/>
+                        </field>
+                        <field label='Description' var='muc#roomconfig_roomdesc' type='text-single'>
+                                <value/>
+                        </field>
+                        <field label='Publicly Listed?' var='muc#roomconfig_publicroom' type='boolean'>
+                                <value>1</value>
+                        </field>
+                        <field label='Moderated' var='muc#roomconfig_moderatedroom' type='boolean'>
+                                <value>0</value>
+                        </field>
+                        <field label='Members Only' var='muc#roomconfig_membersonly' type='boolean'>
+                                <value>0</value>
+                        </field>
+                        <field label='Password' var='muc#roomconfig_roomsecret' type='text-single'>
+                                <value>footest</value>
+                        </field>
+                        <field label='Persistent Room' var='muc#roomconfig_persistentroom' type='boolean'>
+                                <value>0</value>
+                        </field>
+                        <field label='Real JIDs visible to' var='muc#roomconfig_whois' type='list-single'>
+                                <value>none</value>
+                                <option label='Anyone'>
+                                        <value>anyone</value>
+                                </option>
+                                <option label='Anyone with voice'>
+                                        <value>participants</value>
+                                </option>
+                                <option label='Moderators Only'>
+                                        <value>moderators</value>
+                                </option>
+                                <option label='Nobody'>
+                                        <value>none</value>
+                                </option>
+                        </field>
+                        <field label='Invitations sent by' var='x-isode#roomconfig_invite' type='list-single'>
+                                <value>anyone</value>
+                                <option label='Anyone'>
+                                        <value>anyone</value>
+                                </option>
+                                <option label='Anyone with voice'>
+                                        <value>participants</value>
+                                </option>
+                                <option label='Moderators Only'>
+                                        <value>moderators</value>
+                                </option>
+                                <option label='Nobody'>
+                                        <value>none</value>
+                                </option>
+                        </field>
+                        <field label='Private messages sent by' var='x-isode#roomconfig_privmsg' type='list-single'>
+                                <value>anyone</value>
+                                <option label='Anyone'>
+                                        <value>anyone</value>
+                                </option>
+                                <option label='Anyone with voice'>
+                                        <value>participants</value>
+                                </option>
+                                <option label='Moderators Only'>
+                                        <value>moderators</value>
+                                </option>
+                                <option label='Nobody'>
+                                        <value>none</value>
+                                </option>
+                        </field>
+                        <field label='Allow vCards on anonymous users?' var='x-isode#roomconfig_vcards' type='boolean'>
+                                <value>0</value>
+                        </field>
+                        <field label='Allow all users to change subject?' var='muc#roomconfig_changesubject' type='boolean'>
+                                <value>0</value>
+                        </field>
+                        <field label='History Length' var='x-isode#roomconfig_history_length' type='text-single'>
+                                <value>20</value>
+                        </field>
+                        <field label='Clear History' var='x-isode#roomconfig_history_clear' type='boolean'>
+                                <value>0</value>
+                        </field>
+                        <field label='Accept any message types' var='x-isode#roomconfig_pass_any' type='boolean'>
+                                <value>1</value>
+                        </field>
+                        <field label='Accept XHTML-IM messages' var='x-isode#roomconfig_pass_html' type='boolean'>
+                                <value>1</value>
+                        </field>
+                </x>
+        </query>
+</iq>
+<iq type='get' id='purple132c33e'>
+        <ping xmlns='urn:xmpp:ping'/>
+</iq>
+<iq to='footest@jabber.org/5030d0f81b06b2d4' type='result' id='purple132c33e'/>
+<iq type='set' id='purple132c33f' to='#mapr@conference.jabber.org'>
+        <query xmlns='http://jabber.org/protocol/muc#owner'>
+                <x xmlns='jabber:x:data' type='submit'>
+                        <field var='FORM_TYPE'>
+                                <value>http://jabber.org/protocol/muc#roomconfig</value>
+                        </field>
+                        <field var='muc#roomconfig_roomname'>
+                                <value>mapr</value>
+                        </field>
+                        <field var='muc#roomconfig_publicroom'>
+                                <value>0</value>
+                        </field>
+                        <field var='muc#roomconfig_moderatedroom'>
+                                <value>0</value>
+                        </field>
+                        <field var='muc#roomconfig_membersonly'>
+                                <value>1</value>
+                        </field>
+                        <field var='muc#roomconfig_roomsecret'>
+                                <value>footest</value>
+                        </field>
+                        <field var='muc#roomconfig_persistentroom'>
+                                <value>1</value>
+                        </field>
+                        <field var='muc#roomconfig_whois'>
+                                <value>none</value>
+                        </field>
+                        <field var='x-isode#roomconfig_invite'>
+                                <value>anyone</value>
+                        </field>
+                        <field var='x-isode#roomconfig_privmsg'>
+                                <value>anyone</value>
+                        </field>
+                        <field var='x-isode#roomconfig_vcards'>
+                                <value>0</value>
+                        </field>
+                        <field var='muc#roomconfig_changesubject'>
+                                <value>0</value>
+                        </field>
+                        <field var='x-isode#roomconfig_history_length'>
+                                <value>999</value>
+                        </field>
+                        <field var='x-isode#roomconfig_history_clear'>
+                                <value>0</value>
+                        </field>
+                        <field var='x-isode#roomconfig_pass_any'>
+                                <value>1</value>
+                        </field>
+                        <field var='x-isode#roomconfig_pass_html'>
+                                <value>1</value>
+                        </field>
+                </x>
+        </query>
+</iq>
+<iq from='#mapr@conference.jabber.org' to='footest@jabber.org/5030d0f81b06b2d4' type='result' id='purple132c33f'/>
