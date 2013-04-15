@@ -3,6 +3,13 @@ folder_01.source = qml/mapr
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
+XMPP_BASE = $$PWD/native/xmpp/
+QXMPP_INCLUDEPATH = $$XMPP_BASE/qxmpp/src/base $$XMPP_BASE/qxmpp/src/client
+QXMPP_INCLUDEPATH +=$$XMPP_BASE/qxmpp/src/server
+
+LIBS += $$XMPP_BASE/libs/linux/release/libqxmpp.so.0
+INCLUDEPATH += $$QXMPP_INCLUDEPATH
+
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
@@ -11,6 +18,8 @@ QML_IMPORT_PATH =
 CONFIG += mobility
 MOBILITY += location
 
+QT +=network xml
+
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 # CONFIG += qdeclarative-boostable
 
@@ -18,7 +27,8 @@ MOBILITY += location
 SOURCES += main.cpp \
     native/mapwidget.cpp \
     native/listmodel.cpp \
-    native/mapitem.cpp
+    native/mapitem.cpp \
+    native/mynotifier.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -31,4 +41,5 @@ OTHER_FILES += \
 HEADERS += \
     native/mapwidget.h \
     native/listmodel.h \
-    native/mapitem.h
+    native/mapitem.h \
+    native/mynotifier.h

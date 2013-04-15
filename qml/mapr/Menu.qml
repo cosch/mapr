@@ -44,9 +44,37 @@ Rectangle {
         }
     }
 
+    Text {
+        id: stateText
+        z: 1
+        color: "white";
+        text: "foo"
+        Component.onCompleted: {
+            updateXmppState()
+            notifier.update.connect( updateXmppState );
+        }
+    }
+
     ListModel {
         id: menuModel
         ListElement { title: "Buddies"; view: "buddies_view"}
         ListElement { title: "Map"; view: "map_view"}
     }
+
+    function updateXmppState( ) {
+
+        var s = xmppClient.state
+        console.log("updateXmppState: "+s)
+        switch (s) {
+            case 0:
+                stateText.text="disconnected"
+                break;
+            case 1:
+                stateText.text="connecting"
+                break;
+            case 2:
+                stateText.text="connected"
+        }
+    }
+
 }

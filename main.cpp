@@ -6,8 +6,12 @@
 #include "native/mapwidget.h"
 #include "native/listmodel.h"
 #include "native/mapitem.h"
+#include "native/mynotifier.h"
+
+#include "QXmppClient.h"
 
 static ListModel* g_model = NULL;
+
 
 ListModel* getModel() {
   qDebug() << "INFO: getModel" << g_model;
@@ -26,7 +30,20 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QmlApplicationViewer viewer;
 
+    QXmppClient xmppClient;
+    xmppClient.configuration().setJid("footest@jabber.org");
+    xmppClient.configuration().setPassword("ohahhaa");
+    QXmppLogger::getLogger()->setLoggingType(QXmppLogger::StdoutLogging);
+    xmppClient.connectToServer(xmppClient.configuration());
+
+    MyNotifier myNotifier;
+    QObject::connect( &xmppClient, SIGNAL(stateChanged(QXmppClient::State)), &myNotifier, SLOT(notifyStateChange(QXmppClient::State)) );
+
     viewer.rootContext()->setContextProperty("mapModel",  getModel());
+    viewer.rootContext()->setContextProperty("xmppClient",  &xmppClient);
+    viewer.rootContext()->setContextProperty("notifier", &myNotifier);
+
+    //qmlRegisterMetaType<QXmppClient::State>("xmppClient::State");
     qmlRegisterType<MapWidget>("maprwidgets", 1, 0, "MyMap");
 
 
