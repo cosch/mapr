@@ -7,10 +7,10 @@ XMPP_BASE = $$PWD/native/xmpp/
 QXMPP_INCLUDEPATH = $$XMPP_BASE/qxmpp/src/base $$XMPP_BASE/qxmpp/src/client
 QXMPP_INCLUDEPATH +=$$XMPP_BASE/qxmpp/src/server
 
-CONFIG(debug) {
+CONFIG(debug, debug|release) {
     LIBS += $$XMPP_BASE/libs/linux/debug/libqxmpp_d.so.0.7.6
 }
-CONFIG(release) {
+else {
     LIBS += $$XMPP_BASE/libs/linux/release/libqxmpp.so.0.7.6
 }
 
