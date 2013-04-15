@@ -3,18 +3,20 @@ folder_01.source = qml/mapr
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
-XMPP_BASE = $$PWD/native/xmpp/
-QXMPP_INCLUDEPATH = $$XMPP_BASE/qxmpp/src/base $$XMPP_BASE/qxmpp/src/client
-QXMPP_INCLUDEPATH +=$$XMPP_BASE/qxmpp/src/server
+XMPP_BASE = $$PWD/libs/xmpp/
+QXMPP_INCLUDEPATH  = $$XMPP_BASE/qxmpp/src/base
+QXMPP_INCLUDEPATH += $$XMPP_BASE/qxmpp/src/client
+QXMPP_INCLUDEPATH += $$XMPP_BASE/qxmpp/src/server
 
 CONFIG(debug, debug|release) {
-    LIBS += $$XMPP_BASE/libs/linux/debug/libqxmpp_d.so.0.7.6
+    LIBS += $$PWD/libs/linux/debug/libqxmpp_d.so.0.7.6
 }
 else {
-    LIBS += $$XMPP_BASE/libs/linux/release/libqxmpp.so.0.7.6
+    LIBS += $$PWD/libs/linux/release/libqxmpp.so.0.7.6
 }
 
 INCLUDEPATH += $$QXMPP_INCLUDEPATH
+INCLUDEPATH += $$PWD/ui
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
@@ -31,10 +33,12 @@ QT +=network xml
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp \
-    native/mapwidget.cpp \
-    native/listmodel.cpp \
-    native/mapitem.cpp \
-    native/mynotifier.cpp
+    ui/mapwidget.cpp \
+    ui/listmodel.cpp \
+    ui/mapitem.cpp \
+    ui/mynotifier.cpp \
+    service/qservicefactory.cpp \
+    service/qxmppservice.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -46,7 +50,10 @@ OTHER_FILES += \
     room-log-pidgin.xml
 
 HEADERS += \
-    native/mapwidget.h \
-    native/listmodel.h \
-    native/mapitem.h \
-    native/mynotifier.h
+    ui/mapwidget.h \
+    ui/listmodel.h \
+    ui/mapitem.h \
+    ui/mynotifier.h \
+    service/qservicefactory.h \
+    service/singleton.h \
+    service/qxmppservice.h

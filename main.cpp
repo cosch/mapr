@@ -3,10 +3,10 @@
 #include <QDeclarativeContext>
 #include "qmlapplicationviewer.h"
 
-#include "native/mapwidget.h"
-#include "native/listmodel.h"
-#include "native/mapitem.h"
-#include "native/mynotifier.h"
+#include "mapwidget.h"
+#include "listmodel.h"
+#include "mapitem.h"
+#include "mynotifier.h"
 
 #include "QXmppClient.h"
 #include "QXmppMucManager.h"
