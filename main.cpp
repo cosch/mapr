@@ -48,6 +48,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         }
     }
     qDebug() << " mucMan:" << mucMan;
+    QList<QXmppMucRoom*> rooms = mucMan->rooms();
 
     MyNotifier myNotifier;
     QObject::connect( &xmppClient, SIGNAL(stateChanged(QXmppClient::State)), &myNotifier, SLOT(notifyStateChange(QXmppClient::State)) );
