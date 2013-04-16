@@ -14,12 +14,12 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     viewer.rootContext()->setContextProperty("mapModel",  &QServiceFactory::instance().list_model() );
     viewer.rootContext()->setContextProperty("xmppService", &QServiceFactory::instance().xmpp_service());
+    viewer.rootContext()->setContextProperty("roomModel", &QServiceFactory::instance().xmpp_service().room_model());
 
     //viewer.rootContext()->setContextProperty("mucMan", mucMan);
 
     //qmlRegisterMetaType<QXmppClient::State>("xmppClient::State");
     qmlRegisterType<QMapWidget>("maprwidgets", 1, 0, "MyMap");
-
 
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     viewer.setMainQmlFile(QLatin1String("qml/mapr/main.qml"));

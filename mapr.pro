@@ -60,7 +60,8 @@ SOURCES += main.cpp \
     ui/listmodel.cpp \
     ui/mapitem.cpp \
     service/servicefactory.cpp \
-    service/xmppservice.cpp
+    service/xmppservice.cpp \
+    ui/roomitem.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -77,4 +78,5 @@ HEADERS += \
     ui/mapitem.h \
     service/singleton.h \
     service/servicefactory.h \
-    service/xmppservice.h
+    service/xmppservice.h \
+    ui/roomitem.h
