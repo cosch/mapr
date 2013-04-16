@@ -10,6 +10,8 @@ QXmppService::QXmppService(QObject *parent) :
 
     check = QObject::connect( &m_xmpp_client, SIGNAL(stateChanged(QXmppClient::State)), this, SLOT(notifyStateChange(QXmppClient::State)) );
     Q_ASSERT(check);
+
+    connect();
 }
 
 void QXmppService::connect()
