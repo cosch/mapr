@@ -14,6 +14,7 @@ class QXmppService : public QObject
 
 public:
     explicit QXmppService(QObject *parent = 0);
+    virtual ~QXmppService();
     
     void connect();
 

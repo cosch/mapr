@@ -18,7 +18,12 @@ QXmppService::QXmppService(QObject *parent) :
 
     connect();
 
-    m_room_model->appendRow(new QRoomItem("tja", NULL, m_room_model));
+    //m_room_model->appendRow(new QRoomItem("tja", NULL, m_room_model));
+}
+
+QXmppService::~QXmppService()
+{
+    m_xmpp_client.disconnectFromServer();
 }
 
 void QXmppService::connect()
