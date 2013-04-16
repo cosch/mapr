@@ -14,7 +14,7 @@
 #include "mapitem.h"
 
 // A widget for QML, therefore we need the parameter-less constructor.
-MapWidget::MapWidget() :
+QMapWidget::QMapWidget() :
     QGraphicsGeoMap(createManager()),
     m_datamodel(NULL)
 {
@@ -23,14 +23,14 @@ MapWidget::MapWidget() :
     //addMapItem(new MapItem("txtr", 53.12,13.52));
 }
 
-MapWidget::~MapWidget()
+QMapWidget::~QMapWidget()
 {
 }
 
 // This method is a bit a heck. We actually call it before the object
 // is completely created. We need to do this, because our parent class
 // needs a QGeoMappingManager passed to its constructor.
-QGeoMappingManager* MapWidget::createManager()
+QGeoMappingManager* QMapWidget::createManager()
 {
     qDebug() << "INFO: Creating mapping manager";
     // We have to access this as static member, because we can't get anything
@@ -48,7 +48,7 @@ QGeoMappingManager* MapWidget::createManager()
     return mappingManager;
 }
 
-void MapWidget::addMapItem(MapItem *item)
+void QMapWidget::addMapItem(QMapItem *item)
 {
     QGeoCoordinate coord(item->geoX(), item->geoY());
 
@@ -96,7 +96,7 @@ void MapWidget::addMapItem(MapItem *item)
 /*
  * Remember the position. We use this in mouseReleaseEvent
  */
-void MapWidget::mousePressEvent(QGraphicsSceneMouseEvent* event)
+void QMapWidget::mousePressEvent(QGraphicsSceneMouseEvent* event)
 {
     mLastPos = event->pos();
 }
@@ -106,7 +106,7 @@ void MapWidget::mousePressEvent(QGraphicsSceneMouseEvent* event)
  * we look at the press coordinates and if there is a POI we emit a signal
  * if there are several POIs, we only emit the signal for the first one.
  */
-void MapWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+void QMapWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
 {
     QPointF newPos = event->pos();
     QPointF diff = mLastPos - newPos;
@@ -127,7 +127,7 @@ void MapWidget::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
     }
 }
 
-void MapWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+void QMapWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
 {
     // Round to int
     QPoint lastPos = event->lastPos().toPoint();
@@ -140,21 +140,21 @@ void MapWidget::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
     //setFollowPosition(false);
 }
 
-void MapWidget::setDatamodel(QObject* m)
+void QMapWidget::setDatamodel(QObject* m)
 {
     qDebug() << "INFO: setDatamodel" << m;
 
-    m_datamodel=dynamic_cast<ListModel*>(m);
+    m_datamodel=dynamic_cast<QListModel*>(m);
 
     for(int i=0;m_datamodel && i<m_datamodel->rowCount();i++)
     {
-        addMapItem((MapItem*)m_datamodel->itemAt(i));
+        addMapItem((QMapItem*)m_datamodel->itemAt(i));
     }
 
     datamodelChanged(m_datamodel);
 }
 
-QObject* MapWidget::datamodel()
+QObject* QMapWidget::datamodel()
 {
     return m_datamodel;
 }

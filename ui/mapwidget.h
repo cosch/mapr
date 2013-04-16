@@ -12,23 +12,23 @@
 
 QTM_USE_NAMESPACE
 
-class MapItem;
-class ListModel;
+class QMapItem;
+class QListModel;
 
-class MapWidget : public QGraphicsGeoMap
+class QMapWidget : public QGraphicsGeoMap
 {
     Q_OBJECT
 
     Q_PROPERTY(QObject* datamodel READ datamodel WRITE setDatamodel NOTIFY datamodelChanged)
 
 public:
-    MapWidget();
-    ~MapWidget();
+    QMapWidget();
+    ~QMapWidget();
 
     void setDatamodel(QObject *model);
     QObject* datamodel();
 
-    void addMapItem(MapItem *item);
+    void addMapItem(QMapItem *item);
     //void removePoi(PoiData *poi);
     //void clearPois();
 
@@ -46,7 +46,7 @@ private:
 
 private:
     QPointF mLastPos;
-    ListModel* m_datamodel;
+    QListModel* m_datamodel;
 };
 
 #endif // MAP_WIDGET_H

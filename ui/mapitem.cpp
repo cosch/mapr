@@ -1,12 +1,12 @@
 #include "mapitem.h"
 
-MapItem::MapItem(QObject *parent) :
-    ListItem(parent)
+QMapItem::QMapItem(QObject *parent) :
+    QListItem(parent)
 {
 }
 
-MapItem::MapItem(const QString &name, const qreal &geoX, const qreal &geoY, QObject *parent) :
-    ListItem(parent),
+QMapItem::QMapItem(const QString &name, const qreal &geoX, const qreal &geoY, QObject *parent) :
+    QListItem(parent),
     m_name(name),
     m_geoX(geoX),
     m_geoY(geoY)
@@ -14,13 +14,13 @@ MapItem::MapItem(const QString &name, const qreal &geoX, const qreal &geoY, QObj
 
 }
 
-void MapItem::setName(const QString &name)
+void QMapItem::setName(const QString &name)
 {
     m_name = name;
     emit dataChanged();
 }
 
-void MapItem::setGeo(const qreal &geoX, const qreal &geoY)
+void QMapItem::setGeo(const qreal &geoX, const qreal &geoY)
 {
   if(m_geoX != geoX || m_geoY != geoY) {
     m_geoX=geoX;
@@ -29,7 +29,7 @@ void MapItem::setGeo(const qreal &geoX, const qreal &geoY)
   }
 }
 
-QHash<int, QByteArray> MapItem::roleNames() const
+QHash<int, QByteArray> QMapItem::roleNames() const
 {
   QHash<int, QByteArray> names;
   names[NameRole] = "name";
@@ -38,7 +38,7 @@ QHash<int, QByteArray> MapItem::roleNames() const
   return names;
 }
 
-QVariant MapItem::data(int role) const
+QVariant QMapItem::data(int role) const
 {
   switch(role) {
   case NameRole:

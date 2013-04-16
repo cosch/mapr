@@ -1,4 +1,4 @@
-#include "qxmppservice.h"
+#include "xmppservice.h"
 
 QXmppService::QXmppService(QObject *parent) :
     QObject(parent)

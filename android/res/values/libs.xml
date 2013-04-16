@@ -7,6 +7,7 @@
         <item>QtNetwork</item>
         <item>QtScript</item>
         <item>QtSql</item>
+        <item>QtXml</item>
         <item>QtLocation</item>
         <item>QtSvg</item>
         <item>QtXmlPatterns</item>

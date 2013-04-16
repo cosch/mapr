@@ -8,23 +8,33 @@ QXMPP_INCLUDEPATH  = $$XMPP_BASE/qxmpp/src/base
 QXMPP_INCLUDEPATH += $$XMPP_BASE/qxmpp/src/client
 QXMPP_INCLUDEPATH += $$XMPP_BASE/qxmpp/src/server
 
-CONFIG(debug, debug|release) {
-    LIBS += $$PWD/libs/linux/debug/libqxmpp_d.so.0.7.6
-
-    debug_libs.source = libs/linux/debug/libqxmpp_d.so.0.7.6
-    debug_libs.target = .
-    debug_libs2.source = libs/linux/debug/libqxmpp_d.so.0
-    debug_libs2.target = .
-    DEPLOYMENTFOLDERS += debug_libs debug_libs2
+android {
+    CONFIG(debug, debug|release) {
+        LIBS += $$PWD/libs/android/debug/libqxmpp_d.a
+    }
+    else {
+        LIBS += $$PWD/libs/android/release/libqxmpp.a
+    }
 }
 else {
-    LIBS += $$PWD/libs/linux/release/libqxmpp.so.0.7.6
+    CONFIG(debug, debug|release) {
+        LIBS += $$PWD/libs/linux/debug/libqxmpp_d.so.0.7.6
 
-    rel_libs.source = libs/linux/release/libqxmpp.so.0.7.6
-    rel_libs.target = .
-    rel_libs2.source = libs/linux/release/libqxmpp.so.0
-    rel_libs2.target = .
-    DEPLOYMENTFOLDERS += rel_libs rel_libs2
+        debug_libs.source = libs/linux/debug/libqxmpp_d.so.0.7.6
+        debug_libs.target = .
+        debug_libs2.source = libs/linux/debug/libqxmpp_d.so.0
+        debug_libs2.target = .
+        DEPLOYMENTFOLDERS += debug_libs debug_libs2
+    }
+    else {
+        LIBS += $$PWD/libs/linux/release/libqxmpp.so.0.7.6
+
+        rel_libs.source = libs/linux/release/libqxmpp.so.0.7.6
+        rel_libs.target = .
+        rel_libs2.source = libs/linux/release/libqxmpp.so.0
+        rel_libs2.target = .
+        DEPLOYMENTFOLDERS += rel_libs rel_libs2
+    }
 }
 
 INCLUDEPATH += $$QXMPP_INCLUDEPATH
@@ -49,9 +59,8 @@ SOURCES += main.cpp \
     ui/mapwidget.cpp \
     ui/listmodel.cpp \
     ui/mapitem.cpp \
-    ui/mynotifier.cpp \
-    service/qservicefactory.cpp \
-    service/qxmppservice.cpp
+    service/servicefactory.cpp \
+    service/xmppservice.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -66,7 +75,6 @@ HEADERS += \
     ui/mapwidget.h \
     ui/listmodel.h \
     ui/mapitem.h \
-    ui/mynotifier.h \
-    service/qservicefactory.h \
     service/singleton.h \
-    service/qxmppservice.h
+    service/servicefactory.h \
+    service/xmppservice.h

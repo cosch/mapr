@@ -2,7 +2,8 @@
 #define QSERVICEFACTORY_H
 
 #include "singleton.h"
-#include "qxmppservice.h"
+#include "xmppservice.h"
+#include "listmodel.h"
 
 #include <QObject>
 
@@ -20,6 +21,8 @@ public:
 
     QXmppService& xmpp_service() {return m_xmpp_service;}
 
+    QListModel&  list_model() {return *m_list_model; }
+
 signals:
     
 public slots:
@@ -29,6 +32,7 @@ private:
 
 private:
     QXmppService m_xmpp_service;
+    QListModel*    m_list_model;
 };
 
 #endif // QSERVICEFACTORY_H

@@ -5,7 +5,7 @@
 
 #include "listmodel.h"
 
-class MapItem : public ListItem
+class QMapItem : public QListItem
 {
     Q_OBJECT
 
@@ -17,8 +17,8 @@ public:
   };
 
 public:
-  MapItem(QObject *parent = 0);
-  explicit MapItem(const QString &name, const qreal &geoX, const qreal &geoY, QObject *parent = 0);
+  QMapItem(QObject *parent = 0);
+  explicit QMapItem(const QString &name, const qreal &geoX, const qreal &geoY, QObject *parent = 0);
 
   QVariant data(int role) const;
   QHash<int, QByteArray> roleNames() const;

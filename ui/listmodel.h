@@ -4,12 +4,12 @@
 #include <QList>
 #include <QVariant>
 
-class ListItem: public QObject {
+class QListItem: public QObject {
   Q_OBJECT
 
 public:
-  ListItem(QObject* parent = 0) : QObject(parent) {}
-  virtual ~ListItem() {}
+  QListItem(QObject* parent = 0) : QObject(parent) {}
+  virtual ~QListItem() {}
 
   virtual QString id() const = 0;
   virtual QVariant data(int role) const = 0;
@@ -19,32 +19,32 @@ signals:
   void dataChanged();
 };
 
-class ListModel : public QAbstractListModel
+class QListModel : public QAbstractListModel
 {
   Q_OBJECT
 
 public:
-  explicit ListModel(ListItem* prototype, QObject* parent = 0);
-  ~ListModel();
+  explicit QListModel(QListItem* prototype, QObject* parent = 0);
+  ~QListModel();
   int rowCount(const QModelIndex &parent = QModelIndex()) const;
   QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
-  void appendRow(ListItem* item);
-  void appendRows(const QList<ListItem*> &items);
-  void insertRow(int row, ListItem* item);
+  void appendRow(QListItem* item);
+  void appendRows(const QList<QListItem*> &items);
+  void insertRow(int row, QListItem* item);
   bool removeRow(int row, const QModelIndex &parent = QModelIndex());
   bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex());
-  ListItem* takeRow(int row);
-  ListItem* find(const QString &id) const;
-  QModelIndex indexFromItem( const ListItem* item) const;
+  QListItem* takeRow(int row);
+  QListItem* find(const QString &id) const;
+  QModelIndex indexFromItem( const QListItem* item) const;
   void clear();
-  ListItem* itemAt(int index);
+  QListItem* itemAt(int index);
 
 private slots:
   void handleItemChange();
 
 private:
-  ListItem* m_prototype;
-  QList<ListItem*> m_list;
+  QListItem* m_prototype;
+  QList<QListItem*> m_list;
 };
 
 
