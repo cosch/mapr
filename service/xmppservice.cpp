@@ -18,7 +18,7 @@ QXmppService::QXmppService(QObject *parent) :
 
     connect();
 
-    m_room_model->appendRow(new QRoomItem("tja", m_room_model));
+    m_room_model->appendRow(new QRoomItem("tja", NULL, m_room_model));
 }
 
 void QXmppService::connect()
@@ -27,20 +27,24 @@ void QXmppService::connect()
     m_xmpp_client.configuration().setPassword("footest23");
     QXmppLogger::getLogger()->setLoggingType(QXmppLogger::StdoutLogging);
     m_xmpp_client.connectToServer(m_xmpp_client.configuration());
-
-    QXmppMucRoom *room = m_muc_man.addRoom("#mapr@conference.jabber.org");
-    room->setNickName("maprfootester");
-    room->setPassword("footest");
-    room->join();
 }
 
-void QXmppService::notifyStateChange(QXmppClient::State)
+void QXmppService::notifyStateChange(QXmppClient::State s)
 {
+    if( s==2 )
+    {
+        qDebug() << "creating Room";
+        QXmppMucRoom *room = m_muc_man.addRoom("#mapr@conference.jabber.org");
+        room->setNickName("maprfootester");
+        room->setPassword("footest");
+        qDebug() << "joining Room";
+        room->join();
+    }
     emit stateChanged();
 }
 
 void QXmppService::notifyRoomsChanged(QXmppMucRoom *room)
 {
-    m_room_model->appendRow(new QRoomItem(QString(room->name()), m_room_model));
+    m_room_model->appendRow(new QRoomItem(QString(room->jid()), room, m_room_model));
     emit roomsChanged();
 }

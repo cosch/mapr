@@ -25,7 +25,7 @@ ViewLeft {
                 }
                 color: "white";
                 font.pixelSize: 16;
-                text: name
+                text: name + ".." + joined
             }
             Rectangle {
                 height: 2;
