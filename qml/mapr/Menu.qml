@@ -51,7 +51,7 @@ Rectangle {
         text: "foo"
         Component.onCompleted: {
             updateXmppState()
-            notifier.update.connect( updateXmppState );
+            xmppService.stateChanged.connect( updateXmppState );
         }
     }
 
@@ -63,7 +63,7 @@ Rectangle {
 
     function updateXmppState( ) {
 
-        var s = xmppClient.state
+        var s = xmppService.state
         console.log("updateXmppState: "+s)
         switch (s) {
             case 0:

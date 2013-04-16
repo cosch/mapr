@@ -10,13 +10,26 @@ QXMPP_INCLUDEPATH += $$XMPP_BASE/qxmpp/src/server
 
 CONFIG(debug, debug|release) {
     LIBS += $$PWD/libs/linux/debug/libqxmpp_d.so.0.7.6
+
+    debug_libs.source = libs/linux/debug/libqxmpp_d.so.0.7.6
+    debug_libs.target = .
+    debug_libs2.source = libs/linux/debug/libqxmpp_d.so.0
+    debug_libs2.target = .
+    DEPLOYMENTFOLDERS += debug_libs debug_libs2
 }
 else {
     LIBS += $$PWD/libs/linux/release/libqxmpp.so.0.7.6
+
+    rel_libs.source = libs/linux/release/libqxmpp.so.0.7.6
+    rel_libs.target = .
+    rel_libs2.source = libs/linux/release/libqxmpp.so.0
+    rel_libs2.target = .
+    DEPLOYMENTFOLDERS += rel_libs rel_libs2
 }
 
 INCLUDEPATH += $$QXMPP_INCLUDEPATH
 INCLUDEPATH += $$PWD/ui
+INCLUDEPATH += $$PWD/service
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =

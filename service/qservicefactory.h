@@ -13,10 +13,12 @@ friend class Singleton<QServiceFactory>;
 
     Q_OBJECT
 public:
-    static QServiceFactory* instance()
+    static QServiceFactory& instance()
     {
-        return &Singleton<QServiceFactory>::Instance();
+        return Singleton<QServiceFactory>::Instance();
     }
+
+    QXmppService& xmpp_service() {return m_xmpp_service;}
 
 signals:
     
